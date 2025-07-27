@@ -133,6 +133,33 @@ const getByroutes = async (request, response) =>
 
 }
 
+const bookAvehicle = async (request, response) => {
+    const vehicleId = request.query.id;
+    const vehicleBody = request.body;
+    try {
+    
+        const vehicleBooked = await List.findByIdAndUpdate(
+            vehicleId,
+           vehicleBody,
+        );
+         response.json({
+            status: "success",
+            result: vehicleBooked,
+          });
+        
+
+    } catch (error) {
+        response.json(
+            {
+                status: "Failure",
+                message: error.message,
+            }
+        );
+        
+    }
+
+
+};
 
 
 
@@ -145,6 +172,6 @@ const getByroutes = async (request, response) =>
 
 
 module.exports = {
-    createVehicle,getVehicle,getByVehicleType,getByAcNonAc,getByroutes,checkVehicleIsBooked
+    createVehicle,getVehicle,getByVehicleType,getByAcNonAc,getByroutes,checkVehicleIsBooked,bookAvehicle
 }
 

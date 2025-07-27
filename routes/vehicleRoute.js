@@ -2,7 +2,7 @@ const express = require('express')
 let router = express.Router()
 
 const {
-    createVehicle,getVehicle,getByVehicleType,getByAcNonAc,getByroutes,checkVehicleIsBooked
+    createVehicle,getVehicle,getByVehicleType,getByAcNonAc,getByroutes,checkVehicleIsBooked,bookAvehicle
 } = require("../controller/vehicleController");
 
 
@@ -17,6 +17,8 @@ router.route("/acNonAc").get(getByAcNonAc);
 router.route("/routes").get(getByroutes);
 
 router.route("/checkIsBooked").get(checkVehicleIsBooked);
+
+router.route("/bookAvehicle").put(bookAvehicle);
 
 
 module.exports = router;
