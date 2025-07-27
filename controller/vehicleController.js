@@ -87,6 +87,29 @@ const getByAcNonAc = async (request, response) =>
 
 }
 
+
+const checkVehicleIsBooked = async (request, response) => 
+{
+
+    const isBooked = request.query.isBooked;
+    try {
+        const vehicles = await Vehicle.find({ isBooked: isBooked })
+
+        response.json({
+            status: "success",
+            result: vehicles,
+        });
+        
+    } catch (error) {
+  
+        response.json({
+            status: "Failure",
+            message: error.message,
+        });
+    }
+
+
+}
 const getByroutes = async (request, response) => 
 {
 
@@ -122,6 +145,6 @@ const getByroutes = async (request, response) =>
 
 
 module.exports = {
-    createVehicle,getVehicle,getByVehicleType,getByAcNonAc,getByroutes
+    createVehicle,getVehicle,getByVehicleType,getByAcNonAc,getByroutes,checkVehicleIsBooked
 }
 
